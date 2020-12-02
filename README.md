@@ -63,6 +63,12 @@ This processes all .svo files in the `zed_svo/training` directory, creating a fo
 
 The `n_skip` argument allows skipping every n-th frame in the SVO file, for the pointcloud and rgb outputs. 
 
+### Labeling training data
+
+## Training the object detector
+
+## Running the tracker
+
 ## Visualizing results
 
 To visualize tracker results, use
