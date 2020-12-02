@@ -61,6 +61,14 @@ This processes all .svo files in the `zed_svo/training` directory, creating a fo
 
 The `n_skip` argument allows skipping every n-th frame in the SVO file, for the pointcloud and rgb outputs. 
 
+## Visualizing results
+
+To visualize tracker results, use
+
+``
+python visualize_tracking.py  --results_path output/tracker_results.txt --pcd_dir data/kitti_object/
+``
+
 # Work in progress features
 
 - Integrate with other 3D object detectors in addition to PointRCNN
