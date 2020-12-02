@@ -4,6 +4,8 @@
 
 ### Installation
 
+Code tested on Ubuntu 18.04 with Python 3.7
+
 Dependencies:
 - Numpy
 - Open3D 0.10 or 0.11 [[Installation instructions](http://www.open3d.org/docs/release/getting_started.html)]
