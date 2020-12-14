@@ -17,11 +17,11 @@ Note that rtabmap point clouds are given in camera frame. X is right, Y is down,
 import numpy as np
 from pathlib import Path
 import os
-from pointcloud.clustering import TreePointCloud, PointCluster
+from pointcloud_annotation.clustering import TreePointCloud, PointCluster
 import yaml
 from scipy.spatial.transform import Rotation as Rotation
 import open3d as o3d
-from pointcloud.line_mesh import LineMesh
+from pointcloud_annotation.line_mesh import LineMesh
 
 from abc import ABC as AbstractBaseClass
 from abc import abstractmethod

@@ -12,7 +12,7 @@ from pointcloud_annotation.zed_utils import MultiZedDataset, ZedParams
 import argparse
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser
+    parser = argparse.ArgumentParser()
     parser.add_argument("--data_path", help="Path to data folder.")
     parser.add_argument("--output_path", help="Path to write annotations output.")
     parser.add_argument("--min_cluster_size", help="Minimum cluster size for clustering trees in the global point cloud.",

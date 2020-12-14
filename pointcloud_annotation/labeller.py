@@ -15,8 +15,7 @@ documentation on how to make GUIs.
 """
 import open3d as o3d
 import numpy as np
-# from pointcloud.dataset import Dataset
-from pointcloud.clustering import TreePointCloud
+from pointcloud_annotation.clustering import TreePointCloud
 from pathlib import Path
 
 KEY_KEEP = 'k'

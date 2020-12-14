@@ -1,7 +1,7 @@
 import numpy as np
 from pathlib import Path
 import os
-from pointcloud.clustering import TreePointCloud, PointCluster
+from pointcloud_annotation.clustering import TreePointCloud, PointCluster
 import yaml
 from scipy.spatial.transform import Rotation as Rotation
 import open3d as o3d

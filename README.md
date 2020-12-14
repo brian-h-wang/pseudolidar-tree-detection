@@ -96,6 +96,12 @@ Use the `label_pointcloud_clusters.py` script to manually label point cloud clus
 
 ## Training the object detector
 
+### Convert labeled data to KITTI format
+
+Use `convert_zed_data.py` to 
+
+### PointRCNN training
+
 Follow instructions in the [PointRCNN readme](PointRCNN/README.md).
 
 ## Running the tracker
@@ -115,4 +121,5 @@ python visualize_tracking.py  --results_path output/tracker_results.txt --pcd_di
 # Work in progress features
 
 - Integrate with other 3D object detectors in addition to PointRCNN
+  - To do: Use [mmdetection3d repo](https://github.com/open-mmlab/mmdetection3d) for easier detector training.
 - Support for rosbag data from ZED and Intel RealSense

@@ -2,7 +2,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation as R
 import numba as nb
 import open3d as o3d
-from pointcloud.clustering import PointCluster, TreePointCloud
+from pointcloud_annotation.clustering import PointCluster, TreePointCloud
 
 import time
 

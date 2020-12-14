@@ -17,7 +17,7 @@ Use the ZED API to generate all of these.
 import numpy as np
 from pathlib import Path
 import open3d as o3d
-from pointcloud.dataset import Dataset, MultiDataset, Params, CameraCalibration, Pose
+from pointcloud_annotation.dataset import Dataset, MultiDataset, Params, CameraCalibration, Pose
 import os
 import yaml
 
