@@ -1,3 +1,6 @@
 [submodule "PointRCNN"]
 	path = PointRCNN
 	url = git@github.com:brian-h-wang/PointRCNN.git
+[submodule "Agile-Track"]
+	path = tracking
+	url = git@github.com:brian-h-wang/Agile-Track.git

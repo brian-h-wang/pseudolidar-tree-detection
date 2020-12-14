@@ -9,6 +9,7 @@ We include code for the following:
 * Training a PointRCNN detector on the labeled data.
 * Running a 3D Kalman filter tracker using detections, to filter out detector errors and output stable estimates of tree positions.
 
+
 ## Getting started
 
 ### Installation
@@ -32,6 +33,8 @@ Also install dependencies required by the [AB3DMOT](https://github.com/xinshuowe
 ### Data preparation
 
 The `data/...` folders will be created by the code during data processing.
+
+To use our collected ZED SVO data (used in our paper), download the 'training' and 'testing' folders from our [Google Drive folder here](https://drive.google.com/drive/folders/10wYXolnH8tY95gJmOjIu8k3oubIv6AS3?usp=sharing) and add them under the 'zed_svo' directory.
 
 ```
 pseudolidar-tree-detection
@@ -92,6 +95,10 @@ The `n_skip` argument allows skipping every n-th frame in the SVO file, for the 
 ## Training the object detector
 
 ## Running the tracker
+
+To run the tracker, use the script `tracking/AB3DMOT/main.py`.
+
+To do - cleaning up tracking code.
 
 ## Visualizing results
 
