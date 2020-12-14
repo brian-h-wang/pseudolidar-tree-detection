@@ -92,7 +92,11 @@ The `n_skip` argument allows skipping every n-th frame in the SVO file, for the 
 
 ### Labeling training data
 
+Use the `label_pointcloud_clusters.py` script to manually label point cloud clusters, and use `create_3d_annotations.py` to label point clouds using the clusters.
+
 ## Training the object detector
+
+Follow instructions in the [PointRCNN readme](PointRCNN/README.md).
 
 ## Running the tracker
 

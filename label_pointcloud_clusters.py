@@ -1,6 +1,6 @@
 import argparse
-from pointcloud.labeller import Labeller
-from pointcloud.zed_utils import MultiZedDataset, ZedDataset, ZedParams
+from pointcloud_annotation.labeller import Labeller
+from pointcloud_annotation.zed_utils import MultiZedDataset, ZedDataset, ZedParams
 from pathlib import Path
 import os
 
