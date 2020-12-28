@@ -96,10 +96,14 @@ Use the `label_pointcloud_clusters.py` script to manually label point cloud clus
 
 ## Training the object detector
 
+To do - detailed instructions on training.
+
+See the [PointRCNN readme] for instructions on training the 3D detector and performing inference on the test set.
+
 ### Convert labeled data to KITTI format
 
-Use `convert_zed_data.py` to 
-
+Use `convert_zed_data.py` to convert point clouds, images, and camera calibration info 
+ into KITTI dataset format, required by the PointRCNN detector.
 ### PointRCNN training
 
 Follow instructions in the [PointRCNN readme](PointRCNN/README.md).
