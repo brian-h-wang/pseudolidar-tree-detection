@@ -28,8 +28,8 @@ class ZedParams(Params):
         # Tree clustering parameters
         self.dbscan_eps = 0.1  #
         self.dbscan_min = 10
-        self.min_cluster_size = 1000
-        self.downsample_voxel_size = 0.01
+
+        self.downsample_voxel_size = 0.0
 
         self.visibility_radius = 1000000  # used in spherical projection for open3d hidden point removal function.
                                           # A large value, e.g. 100k or 1million, seems to work well

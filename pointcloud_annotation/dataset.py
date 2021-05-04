@@ -334,6 +334,10 @@ class Dataset(AbstractBaseClass):
                 if self.params.plot_clusters:
                     o3d.visualization.draw_geometries([c.to_o3d() for c in cluster_list])
 
+                self.global_pointcloud.remove_ground(plot=self.params.plot_ground_removal, verbose=self.params.verbose,
+                          ransac_iters=self.params.ransac_iters,
+                          ransac_dist=self.params.ransac_dist)
+
         # Process for converting a cluster in the global point cloud to a local point cloud bounding box:
         #   - Fit a 3D bounding box around the cluster points.
         #       - This box is aligned to the camera axes, in the current time step
@@ -348,11 +352,6 @@ class Dataset(AbstractBaseClass):
         tracking_gt_lines = []
 
         for i in range(0, len(self.time_steps)):
-
-            if i < 550:
-                self._counter.next()
-                continue
-
 
             # Load the local point cloud and camera pose at the current time step
             pcd_local = self.load_local_pointcloud(i)
@@ -400,8 +399,8 @@ class Dataset(AbstractBaseClass):
 
                 # THIS IS USED FOR ZED ROS-STYLE COORDINATES - update other datasets to use the same format later
                 height = bbox_dimensions[2] * self.params.scale_factor
-                width = bbox_dimensions[1] * self.params.scale_factor
-                length = bbox_dimensions[0] * self.params.scale_factor
+                width = bbox_dimensions[0] * self.params.scale_factor
+                length = bbox_dimensions[1] * self.params.scale_factor
 
                 # KITTI 3D box annotations are in camera coordinates
                 # Need to convert to camera coordinates - x right, y down, z forwards

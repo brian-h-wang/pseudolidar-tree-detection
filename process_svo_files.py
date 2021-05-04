@@ -13,7 +13,7 @@ if __name__ == "__main__":
     parser.add_argument('--n_trim', help="Trim this many frames from the end of the video capture, for pose, point cloud, and image outputs.",
                         default=0, type=int)
     parser.add_argument("--dense", help="Skip pseudolidar sparsification and write dense point clouds.",
-                        action="store_true", type=bool, default=False)
+                        action="store_true", default=False)
     args = parser.parse_args()
 
     directory = Path(args.svo_dir)

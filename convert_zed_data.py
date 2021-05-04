@@ -129,20 +129,22 @@ def convert_velodyne(pcd_in_filename, velodyne_out_filename):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    # parser.add_argument("--data_path", default="data/training", help="Path to data folder.")
-    # parser.add_argument("--output_path", help="Path to write annotations output.")
-    parser.add_argument("--testing", action="store_true", help="Set this flag to convert the testing data split. Otherwise, converts training data.")
+    parser.add_argument("--data_path", default="data/training", help="Path to data folder.")
+    parser.add_argument("--output_path", help="Path to write annotations output.")
+    # parser.add_argument("--testing", action="store_true", help="Set this flag to convert the testing data split. Otherwise, converts training data.")
+    parser.add_argument("--skip_images", help="Skip writing images to save time.",
+                        action="store_true", default=False)
 
     args = parser.parse_args()
 
     skip_frames = 0
-    if not args.testing:
-        parent_path = "data/training"
-        output_path = "data/kitti_object/training"
-    else:
-        parent_path = "data/testing"
-        output_path = "data/kitti_object/testing"
+    # if not args.testing:
+    #     parent_path = "data/training"
+    #     output_path = "data/kitti_object/training"
+    # else:
+    #     parent_path = "data/testing"
+    #     output_path = "data/kitti_object/testing"
 
     data_path = Path(args.data_path)
     output_path = Path(args.output_path)
-    convert_all(parent_path, output_path, skip_frames=skip_frames, skip_images=False)
+    convert_all(data_path, output_path, skip_frames=skip_frames, skip_images=args.skip_images)

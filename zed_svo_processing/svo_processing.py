@@ -318,7 +318,7 @@ class SVOFileProcessor(object):
         print("Writing full spatial map to '%s'" % map_output_path)
         pointcloud = sl.FusedPointCloud()
         zed.extract_whole_spatial_map(pointcloud)
-        err = pointcloud.save(str(map_output_path), typeMesh=sl.MESH_FILE_FORMAT.OBJ)
+        err = pointcloud.save(str(map_output_path), typeMesh=sl.MESH_FILE_FORMAT.PLY)
         if not err:
             print("Error while saving ZED point cloud!")
 

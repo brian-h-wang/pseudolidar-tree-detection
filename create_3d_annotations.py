@@ -22,7 +22,9 @@ if __name__ == '__main__':
     parser.add_argument("--ransac_iters", help="Number of iterations to run RANSAC for ground plane removal",
                         required=False, type=float)
     parser.add_argument("--vis", help="Visualize clustering and labeling results, for debugging.",
-                        action="store_true", type=bool)
+                        action="store_true")
+    parser.add_argument("--load_clusters", help="Set this parameter to load clusters from a .npz file",
+                        action="store_true")
 
     args = parser.parse_args()
 
@@ -43,6 +45,8 @@ if __name__ == '__main__':
         params.ransac_dist = args.ransac_dist
     if args.ransac_iters:
         params.ransac_iters = args.ransac_iters
+    if args.load_clusters:
+        params.load_clusters_file = True
 
     # Load dataset and write bounding box annotations
     dataset = MultiZedDataset(data_path, annotations_path, params=params)
