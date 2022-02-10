@@ -51,6 +51,11 @@ class ForestDatasetSplit(KITTISplit):
         reduced_pc = DataProcessing.remove_outside_points(
             pc, calib['world_cam'], calib['cam_img'], image_size)
 
+        # for debugging
+        # print("GET DATA")
+        # print(type(reduced_pc))
+        # reduced_pc = reduced_pc[0:2000,:]
+
         data = {
             'point': reduced_pc,
             'full_point': pc,

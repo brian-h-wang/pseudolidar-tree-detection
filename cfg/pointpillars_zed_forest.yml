@@ -2,7 +2,7 @@ dataset:
   name: TreeDetection
   dataset_path: # path/to/your/dataset
   cache_dir: ./logs/cache
-  steps_per_epoch_train: 5000
+#  steps_per_epoch_train:
 
 model:
   name: PointPillars
@@ -97,6 +97,8 @@ pipeline:
   main_log_dir: ./logs
   train_sum_dir: train_log
   grad_clip_norm: 2
+  num_workers: 0
+  pin_memory: true
 
   optimizer:
     lr: 0.001
