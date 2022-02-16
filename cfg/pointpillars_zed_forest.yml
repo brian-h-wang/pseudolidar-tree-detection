@@ -10,8 +10,8 @@ model:
 
   batcher: "ignore"
 
-#  point_cloud_range: [0, -39.68, -3, 69.12, 39.68, 1]
-  point_cloud_range: [0, -39.68, -3.0, 69.12, 39.68, 10.0]
+#  point_cloud_range: [0, -39.68, -3, 70.12, 39.68, 1]
+  point_cloud_range: [0.0, -12.0, -5.0, 15.0, 12.0, 10.0]
   classes: ['Car']
 
   loss:
@@ -28,7 +28,8 @@ model:
   voxelize:
     max_num_points: 32
     voxel_size: &vsize
-      [0.16, 0.16, 4]
+#      [0.08, 0.08, 15.0]
+      [0.16, 0.16, 15.0]
     max_voxels: [16000, 40000]
 
   voxel_encoder:
@@ -58,23 +59,17 @@ model:
     nms_pre: 100
     score_thr: 0.1
     ranges: [
-      [0, -39.68, -3.0, 70.4, 39.68, 10.0]
+#      [0, -12.0, 0.145, 15.0, 12.0, 0.145]
+      [0, -12.0, -4.00, 15.0, 12.0, -4.00]
     ]
-#    ranges: [
-#      [0, -39.68, -0.6, 70.4, 39.68, -0.6],
-#      [0, -39.68, -0.6, 70.4, 39.68, -0.6],
-#      [0, -39.68, -1.78, 70.4, 39.68, -1.78]
-#    ]
-#    sizes: [[0.6, 0.8, 1.73], [0.6, 1.76, 1.73], [1.6, 3.9, 1.56]]
-    sizes: [[1.6, 1.6, 3.9]]
-#    rotations: [0, 1.57]
-    rotations: [0]
-    iou_thr: [[0.45, 0.6]]
+    sizes: [[0.42, 0.42, 2.9]]
+    rotations: [0.]
+    iou_thr: [[0.25, 0.4]]
 
   augment:
     PointShuffle: True
     ObjectRangeFilter:
-      point_cloud_range: [0, -39.68, -3.0, 69.12, 39.68, 10.0]
+      point_cloud_range: [0.0, -12.0, -5.0, 15.0, 12.0, 10.0]
     ObjectSample:
       min_points_dict:
         Car: 5
@@ -89,11 +84,11 @@ model:
 pipeline:
   name: ObjectDetection
   test_compute_metric: true
-  batch_size: 1
+  batch_size: 2
   val_batch_size: 1
   test_batch_size: 1
   save_ckpt_freq: 5
-  max_epoch: 1
+  max_epoch: 5
   main_log_dir: ./logs
   train_sum_dir: train_log
   grad_clip_norm: 2
@@ -106,7 +101,7 @@ pipeline:
     weight_decay: 0.01
 
   # evaluation properties
-  overlaps: [0.5, 0.5, 0.7]
+  overlaps: [0.5]
   similar_classes: {
 #    Van: Car,
 #    Person_sitting: Pedestrian

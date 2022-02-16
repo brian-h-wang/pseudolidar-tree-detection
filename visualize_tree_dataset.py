@@ -8,17 +8,18 @@ TODO: Shows GT and inference bounding boxes in same color.
 
 
 import logging
+from pathlib import Path
 import open3d.ml as _ml3d
 
 import open3d.ml.torch as ml3d
 
 from open3d.ml.vis import Visualizer, BoundingBox3D, LabelLUT
-from src.detection3d.dataset import ForestDataset
+from pointpillars.dataset import ForestDataset
 
 framework = 'torch'
 kitti_path = "/home/brian/Datasets/ZED2/RTJ_Dataset2/kitti_object"
 
-cfg_file = "pointpillars_zed_forest.yml"
+cfg_file = "cfg/pointpillars_zed_forest.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
 
 model = ml3d.models.PointPillars(**cfg.model)
@@ -28,21 +29,30 @@ dataset = ForestDataset(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
 pipeline = ml3d.pipelines.ObjectDetection(model, dataset=dataset, device="gpu", **cfg.pipeline)
 
 # download the weights.
-import os
-ckpt_folder = "./logs/"
-os.makedirs(ckpt_folder, exist_ok=True)
-ckpt_path = ckpt_folder + "pointpillars_kitti_202012221652utc.pth"
-pointpillar_url = "https://storage.googleapis.com/open3d-releases/model-zoo/pointpillars_kitti_202012221652utc.pth"
-if not os.path.exists(ckpt_path):
-    cmd = "wget {} -O {}".format(pointpillar_url, ckpt_path)
-    os.system(cmd)
+# import os
+# ckpt_folder = "./logs/"
+# os.makedirs(ckpt_folder, exist_ok=True)
+# ckpt_path = ckpt_folder + "pointpillars_kitti_202012221652utc.pth"
+# pointpillar_url = "https://storage.googleapis.com/open3d-releases/model-zoo/pointpillars_kitti_202012221652utc.pth"
+# if not os.path.exists(ckpt_path):
+#     cmd = "wget {} -O {}".format(pointpillar_url, ckpt_path)
+#     os.system(cmd)
 
-pipeline.load_ckpt(ckpt_path=ckpt_path)
+ckpt_folder = Path("logs/PointPillars_TreeDetection_torch/checkpoint")
+ckpt_path = ckpt_folder / "ckpt_00005.pth"
+
+pipeline.load_ckpt(ckpt_path=str(ckpt_path))
 
 test_split = dataset.get_split("test")
 train_split = dataset.get_split("train")
 # data = test_split.get_data(0)
-data = train_split.get_data(82)
+
+
+for i in range(len(train_split)):
+    data = train_split.get_data(i)
+    result = pipeline.run_inference(data)[0]
+    print("PCD %d: Detected %d bounding boxes" % (i, len(result)))
+data = train_split.get_data(1)
 
 # PIPELINE FROM ORIGINAL SCRIPT
 """
@@ -71,14 +81,18 @@ data = test_split[5]['data']
 result = pipeline.run_inference(data)[0]
 
 
-minimum_conf = 0.5
-result = [bbox for bbox in result if bbox.confidence > minimum_conf]
+# minimum_conf = 0.5
+# result = [bbox for bbox in result if bbox.confidence > minimum_conf]
 
 print("Detected %d bounding boxes" % len(result))
 
+# Show ground truth
 # boxes = data['bbox_objs']
-boxes = data['bounding_boxes']
-boxes.extend(result)
+# boxes = data['bounding_boxes']
+# boxes.extend(result)
+
+# Show detections
+boxes = result
 
 vis = Visualizer()
 

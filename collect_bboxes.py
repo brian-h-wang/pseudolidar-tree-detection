@@ -1,4 +1,9 @@
-# Source: https://github.com/isl-org/Open3D-ML/blob/master/scripts/collect_bboxes.py
+"""
+Preprocess bounding boxes for tree detection.
+
+Source: https://github.com/isl-org/Open3D-ML/blob/master/scripts/collect_bboxes.py
+
+"""
 
 import logging
 from os.path import join
@@ -40,6 +45,29 @@ def parse_args():
 
     return args
 
+
+# def process_boxes(i):
+#     data = train.get_data(i)
+#     bbox = data['bounding_boxes']
+#     flat_bbox = [box.to_xyzwhlr() for box in bbox]
+#     indices = utils.operations.points_in_box(data['point'], flat_bbox)
+#     bboxes = []
+#     for i, box in enumerate(bbox):
+#         pts = data['point'][indices[:, i]]
+#         box.points_inside_box = pts
+#
+#         # EXPERIMENTAL
+#         # Set all bounding boxes to same z-coordinate and height
+#         # box.center[2] = 0.1446
+#         # box.size[1] = 2.9155
+#
+#         # END
+#
+#         bboxes.append(box)
+#
+#
+#
+#     return bboxes
 
 def process_boxes(i):
     data = train.get_data(i)
