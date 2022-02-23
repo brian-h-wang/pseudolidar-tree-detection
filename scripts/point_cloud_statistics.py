@@ -18,7 +18,8 @@ from pointpillars.dataset import ForestDataset
 import numpy as np
 
 framework = 'torch'
-kitti_path = "/home/brian/Datasets/ZED2/RTJ_Dataset2/kitti_object"
+# kitti_path = "/home/brian/Datasets/ZED2/RTJ_Dataset2/kitti_object"
+kitti_path = "/home/bhw45/RTJ2_dataset"
 # kitti_path = "/home/brian/Datasets/kitti/"
 
 cfg_file = "cfg/pointpillars_zed_forest.yml"

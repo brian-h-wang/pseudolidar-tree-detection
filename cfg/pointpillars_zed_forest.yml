@@ -60,9 +60,9 @@ model:
     score_thr: 0.1
     ranges: [
 #      [0, -12.0, 0.145, 15.0, 12.0, 0.145]
-      [0, -12.0, -4.00, 15.0, 12.0, -4.00]
+      [0, -12.0, 2.5, 15.0, 12.0, 2.5]
     ]
-    sizes: [[0.42, 0.42, 2.9]]
+    sizes: [[0.42, 0.42, 15.0]]
     rotations: [0.]
     iou_thr: [[0.25, 0.4]]
 
@@ -84,7 +84,7 @@ model:
 pipeline:
   name: ObjectDetection
   test_compute_metric: true
-  batch_size: 2
+  batch_size: 1
   val_batch_size: 1
   test_batch_size: 1
   save_ckpt_freq: 5
