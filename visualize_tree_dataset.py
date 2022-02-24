@@ -14,15 +14,18 @@ import open3d.ml as _ml3d
 import open3d.ml.torch as ml3d
 
 from open3d.ml.vis import Visualizer, BoundingBox3D, LabelLUT
-from pointpillars.dataset import ForestDataset
+from detector_training.dataset import ForestDataset
 
 framework = 'torch'
-kitti_path = "/home/brian/Datasets/ZED2/RTJ_Dataset2/kitti_object"
+# kitti_path = "/home/brian/Datasets/ZED2/RTJ_Dataset2/kitti_object"
+kitti_path = "/home/brian/RTJ2_dataset"
 
-cfg_file = "cfg/pointpillars_zed_forest.yml"
+# cfg_file = "cfg/pointpillars_zed_forest.yml"
+cfg_file = "cfg/pointrcnn_zed_forest.yml"
 cfg = _ml3d.utils.Config.load_from_file(cfg_file)
 
-model = ml3d.models.PointPillars(**cfg.model)
+# model = ml3d.models.PointPillars(**cfg.model)
+model = ml3d.models.PointRCNN(**cfg.model)
 cfg.dataset['dataset_path'] = kitti_path
 # dataset = ml3d.datasets.KITTI(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
 dataset = ForestDataset(cfg.dataset.pop('dataset_path', None), **cfg.dataset)
@@ -38,8 +41,10 @@ pipeline = ml3d.pipelines.ObjectDetection(model, dataset=dataset, device="gpu", 
 #     cmd = "wget {} -O {}".format(pointpillar_url, ckpt_path)
 #     os.system(cmd)
 
-ckpt_folder = Path("logs/PointPillars_TreeDetection_torch/checkpoint")
-ckpt_path = ckpt_folder / "ckpt_00005.pth"
+# ckpt_folder = Path("logs/PointPillars_TreeDetection_torch/checkpoint")
+# ckpt_path = ckpt_folder / "ckpt_00000.pth"
+
+ckpt_path = Path("trained_pointrcnn/rcnn_epoch_70_modified.pth")
 
 pipeline.load_ckpt(ckpt_path=str(ckpt_path))
 

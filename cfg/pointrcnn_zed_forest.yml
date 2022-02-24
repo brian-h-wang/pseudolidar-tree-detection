@@ -18,11 +18,11 @@ model:
   augment:
     PointShuffle: True
     ObjectRangeFilter: False
-    ObjectSample:
-      min_points_dict:
-        Car: 50
-      sample_dict:
-        Car: 15
+#    ObjectSample:
+#      min_points_dict:
+#        Car: 50
+#      sample_dict:
+#        Car: 15
 
   rpn: # First module for bottom-up 3D proposal generation
     backbone: # backbone based on PointNet++
@@ -86,7 +86,7 @@ model:
       loc_scope: 1.5
       loc_bin_size: 0.5
       num_head_bin: 9
-      mean_size: [1.52563191462, 1.62856739989, 3.88311640418]
+      mean_size: [15.0, 0.42, 0.42]  # Tree bounding box size - height first
       post_process: False
       nms_thres: 0.1
 
@@ -107,11 +107,11 @@ model:
 pipeline:
   name: ObjectDetection
   test_compute_metric: true
-  batch_size: 1 #4
-  max_epoch: 200
+  batch_size: 4 #4
+  max_epoch: 10 #200
   val_batch_size: 1 #4
   test_batch_size: 1
-  save_ckpt_freq: 5
+  save_ckpt_freq: 1 #5
   main_log_dir: ./logs
   train_sum_dir: train_log
   grad_clip_norm: 2
@@ -133,9 +133,9 @@ pipeline:
   # evaluation properties
   overlaps: [0.7]
   similar_classes: {
-    Van: Car
+#    Van: Car
   }
-  difficulties: [0, 1, 2]
+  difficulties: [0]
   summary:
     record_for: []
     max_pts:

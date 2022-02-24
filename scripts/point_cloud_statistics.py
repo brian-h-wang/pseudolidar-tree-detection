@@ -14,7 +14,7 @@ import open3d.ml as _ml3d
 import open3d.ml.torch as ml3d
 
 from open3d.ml.vis import Visualizer, BoundingBox3D, LabelLUT
-from pointpillars.dataset import ForestDataset
+from detector_training.dataset import ForestDataset
 import numpy as np
 
 framework = 'torch'

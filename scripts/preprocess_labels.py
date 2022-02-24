@@ -6,7 +6,7 @@ Set height equal to the point cloud height, set z-coordinate equal to the mean o
 point cloud z min and z max.
 """
 from pathlib import Path
-from pointpillars.dataset import ForestDataset
+from detector_training.dataset import ForestDataset
 
 # Load config to get z coordinate min and max
 # TODO for now, just hardcode in the z coordinate min and max

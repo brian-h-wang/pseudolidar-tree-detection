@@ -4,9 +4,10 @@ import open3d.ml.torch as ml3d
 from pathlib import Path
 
 # from open3d.ml.vis import Visualizer, BoundingBox3D, LabelLUT
-from pointpillars.dataset import ForestDataset
+from detector_training.dataset import ForestDataset
 
 import argparse
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--dataset_path", help="Path to the KITTI-format dataset")
